@@ -1,5 +1,6 @@
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts'
-
+import { token } from 'schema.graphql'
+import { ERC20 } from '@graphprotocol/graph-ts'
 import { getTokenPriceInUSD } from '../utils/prices'
 
 
