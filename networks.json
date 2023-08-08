@@ -1,0 +1,8 @@
+{
+  "arbitrum-one": {
+    "UniswapV3Pool": {
+      "address": "0x33fcfbf3af13dcc813053b7dcb7d3546b0c8a18c",
+      "startBlock": 33588077
+    }
+  }
+}
