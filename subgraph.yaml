@@ -46,3 +46,26 @@ dataSources:
         - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
           handler: handleSwap
       file: ./src/uniswap-v-3-pool.ts
+  - kind: ethereum
+    name: Quoter
+    network: arbitrum-one
+    source:
+      address: "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6"
+      abi: Quoter
+      startBlock: 168
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+    entities:
+        - quoteExactInputSingle
+        - quoteExactOutputSingle
+    abis:
+        - name: Quoter
+    file: ./abis/Quoter.json
+    eventHandlers:
+        - event: quoteExactInputSingle(indexed address,indexed address,uint256)
+          handler: handleQuoteExactInputSingle
+        - event: quoteExactOutputSingle(indexed address,indexed address,uint256)
+          handler: handleQuoteExactOutputSingle
+      file: ./src/Quoter.ts

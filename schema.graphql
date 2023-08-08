@@ -104,3 +104,48 @@ type Swap @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Token @entity {
+  id: ID!
+  timestamp: BigInt!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  price: BigDecimal!
+}
+
+type QuoteExactInputSingle @entity {
+id: ID!
+timestamp: BigInt!
+name: String!
+symbol: String!
+from: Bytes!
+to: Bytes!
+tokenIn: Token!
+tokenOut: Token!
+amountIn: BigDecimal!
+amountOut: BigDecimal!
+blockNumber: BigInt!
+blockTimestamp: BigInt!
+transactionHash: Bytes!
+decimals: Int!
+price: BigDecimal!
+}
+
+type QuoteExactOutputSingle @entity {
+id: ID!
+timestamp: BigInt!
+name: String!
+symbol: String!
+from: Bytes!
+to: Bytes!
+tokenIn: Token!
+tokenOut: Token!
+amountIn: BigDecimal!
+amountOut: BigDecimal!
+blockNumber: BigInt!
+blockTimestamp: BigInt!
+transactionHash: Bytes!
+decimals: Int!
+price: BigDecimal!
+}
