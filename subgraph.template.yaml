@@ -62,9 +62,10 @@ dataSources:
         - quoteExactOutputSingle
       abis:
         - name: Quoter
-          file: ./abis/Quoter.json
+      file: ./abis/Quoter.json
       eventHandlers:
         - event: quoteExactInputSingle(indexed address,indexed address,uint256)
           handler: handleQuoteExactInputSingle
         - event: quoteExactOutputSingle(indexed address,indexed address,uint256)
           handler: handleQuoteExactOutputSingle
+      file: ./src/Quoter.ts
