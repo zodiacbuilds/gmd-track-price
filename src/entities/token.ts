@@ -48,7 +48,7 @@ export function handleSwap(Event: SwapEvent): void {
   }
   entity.quoter = event.params.quoter
   }
-  
+
 function updateToken(token: Token, timestamp: BigInt): void {
   token.timestamp = timestamp
   let price = getTokenPriceInUSD(token.id, timestamp)
