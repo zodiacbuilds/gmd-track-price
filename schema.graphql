@@ -149,3 +149,15 @@ transactionHash: Bytes!
 decimals: Int!
 price: BigDecimal!
 }
+
+type Quoter @entity {
+id: ID!
+timestamp: BigInt!
+name: String!
+symbol: String!
+tokenIn: Token!
+tokenOut: Token!
+amountIn: BigDecimal!
+amountOut: BigDecimal!
+price: BigDecimal!
+}

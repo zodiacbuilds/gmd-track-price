@@ -42,6 +42,13 @@ export function getTokenPrice(address: string): BigDecimal {
   return token.price
 }
 
+export function handleSwap(Event: SwapEvent): void {
+  let entity = new swap {
+  event.transaction.hash.concatI32(event.logIndex.toI32())
+  }
+  entity.quoter = event.params.quoter
+  }
+  
 function updateToken(token: Token, timestamp: BigInt): void {
   token.timestamp = timestamp
   let price = getTokenPriceInUSD(token.id, timestamp)
