@@ -4,5 +4,10 @@
       "address": "0x33fcfbf3af13dcc813053b7dcb7d3546b0c8a18c",
       "startBlock": 33588077
     }
+
+  "AccessControlledOffchainAggregator": {
+      "address": "0x3607e46698d218B3a5Cae44bF381475C0a5e2ca7",
+      "startBlock": 101486
+    }
   }
 }

@@ -46,3 +46,77 @@ dataSources:
         - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
           handler: handleSwap
       file: ./src/uniswap-v-3-pool.ts
+  - kind: ethereum
+    name: AccessControlledOffchainAggregator
+    network: arbitrum-one
+    source:
+      address: "0x3607e46698d218B3a5Cae44bF381475C0a5e2ca7"
+      abi: AccessControlledOffchainAggregator
+      startBlock: 101486
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddedAccess
+        - AnswerUpdated
+        - BillingAccessControllerSet
+        - BillingSet
+        - CheckAccessDisabled
+        - CheckAccessEnabled
+        - ConfigSet
+        - LinkTokenSet
+        - NewRound
+        - NewTransmission
+        - OraclePaid
+        - OwnershipTransferRequested
+        - OwnershipTransferred
+        - PayeeshipTransferRequested
+        - PayeeshipTransferred
+        - RemovedAccess
+        - RequesterAccessControllerSet
+        - RoundRequested
+        - ValidatorConfigSet
+      abis:
+        - name: AccessControlledOffchainAggregator
+          file: ./abis/AccessControlledOffchainAggregator.json
+      eventHandlers:
+        - event: AddedAccess(address)
+          handler: handleAddedAccess
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdated
+        - event: BillingAccessControllerSet(address,address)
+          handler: handleBillingAccessControllerSet
+        - event: BillingSet(uint32,uint32,uint32,uint32,uint32)
+          handler: handleBillingSet
+        - event: CheckAccessDisabled()
+          handler: handleCheckAccessDisabled
+        - event: CheckAccessEnabled()
+          handler: handleCheckAccessEnabled
+        - event: ConfigSet(uint32,uint64,address[],address[],uint8,uint64,bytes)
+          handler: handleConfigSet
+        - event: LinkTokenSet(indexed address,indexed address)
+          handler: handleLinkTokenSet
+        - event: NewRound(indexed uint256,indexed address,uint256)
+          handler: handleNewRound
+        - event: NewTransmission(indexed uint32,int192,address,int192[],bytes,bytes32)
+          handler: handleNewTransmission
+        - event: OraclePaid(indexed address,indexed address,uint256,indexed address)
+          handler: handleOraclePaid
+        - event: OwnershipTransferRequested(indexed address,indexed address)
+          handler: handleOwnershipTransferRequested
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PayeeshipTransferRequested(indexed address,indexed address,indexed address)
+          handler: handlePayeeshipTransferRequested
+        - event: PayeeshipTransferred(indexed address,indexed address,indexed address)
+          handler: handlePayeeshipTransferred
+        - event: RemovedAccess(address)
+          handler: handleRemovedAccess
+        - event: RequesterAccessControllerSet(address,address)
+          handler: handleRequesterAccessControllerSet
+        - event: RoundRequested(indexed address,bytes16,uint32,uint8)
+          handler: handleRoundRequested
+        - event: ValidatorConfigSet(indexed address,uint32,indexed address,uint32)
+          handler: handleValidatorConfigSet
+      file: ./src/access-controlled-offchain-aggregator.ts
