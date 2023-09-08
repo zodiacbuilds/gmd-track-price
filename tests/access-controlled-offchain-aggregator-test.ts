@@ -9,7 +9,7 @@ import {
   import { Address, BigInt, Bytes } from "@graphprotocol/graph-ts"
   import { AddedAccess } from "../generated/schema"
   import { AddedAccess as AddedAccessEvent } from "../generated/AccessControlledOffchainAggregator/AccessControlledOffchainAggregator"
-  import { handleAddedAccess } from "../src/access-controlled-offchain-aggregator"
+  import { handleAddedAccess } from "../src/access-controlled-offchain-aggregator.ts"
   import { createAddedAccessEvent } from "./access-controlled-offchain-aggregator-utils"
   
   // Tests structure (matchstick-as >=0.5.0)
