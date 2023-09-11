@@ -3,7 +3,6 @@ import { token } from 'schema.graphql'
 import { ERC20 } from '@graphprotocol/graph-ts'
 import { getTokenPriceInUSD } from '../utils/prices'
 
-
 export function createToken(address: Address, timestamp: BigInt): Token {
   const token = new Token(address.toHexString())
   token.timestamp = timestamp
