@@ -13,7 +13,7 @@ const UNI_V3_POOL_ADDRESS = Address.fromString('0x0632742C132413Cd47438691D8064F
 let oracleLookupTable = new TypedMap<string, Address>()
 oracleLookupTable.set(WETH_TOKEN, ETH_ORACLE)
 
-export function getUniswapPriceInUSD(tokenAddress: Address, fee: i32): BigDecimal {
+export function getUniswapPriceInUSD(tokenAddress: '0x0632742C132413Cd47438691D8064Ff9214aC216', fee: i32): BigDecimal {
     const quoter = UniswapQuoter.bind(UNI_QUOTER_ADDRESS)
     const tokenToWeth = quoter.try_quoteExactInputSingle(
         tokenAddress,
