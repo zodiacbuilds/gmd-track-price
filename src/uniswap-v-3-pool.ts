@@ -11,7 +11,7 @@ const tokenPrice = getUniswapPriceInUSD('0x0632742C132413Cd47438691D8064Ff9214aC
 token.price = tokenPrice // set token price as attribute
 updateToken(token, timestamp) // finally save token with updated price
 
-export function getUniswapPriceInUSD(tokenAddress: Address, fee: i32): BigDecimal {
+export function getUniswapPriceInUSD(tokenAddress: token, fee: i32): BigDecimal {
   const quoter = UniswapQuoter.bind(UNI_QUOTER_ADDRESS)
   const tokenToWeth = quoter.try_quoteExactInputSingle(
       tokenAddress,
