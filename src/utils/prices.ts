@@ -22,20 +22,20 @@ export function getUniswapPriceInUSD(tokenAddress: Address, fee: i32): BigDecima
         BIG_INT_1E18,
         BIG_INT_0
       )
-}
       const wethPrice = getTokenPrice(WETH_TOKEN)
       return toDecimal(tokenToWeth.value, 18).times(wethPrice)
+}
 
-export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = null): BigDecimal {
-    if (token == GMD_TOKEN);
-        return getGMDPriceInUSD(timestamp as BigInt);
+export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = null): BigDecimal
+    if (token == GMD_TOKEN) {
+        return getGMDPriceInUSD(timestamp as BigInt)
     } else {
         const oracleAddress = oracleLookupTable.get(token)
         if (oracleAddress) {
             return getOracleTokenPriceInUSD(oracleAddress)    
-}
+        }
 
-return BIG_DECIMAL_0
+    return BIG_DECIMAL_0
 }
 
 export function getETHPriceInUSD(): BigDecimal {

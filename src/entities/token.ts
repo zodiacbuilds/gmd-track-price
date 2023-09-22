@@ -1,5 +1,5 @@
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts'
-import { token } from 'schema.graphql'
+import { Token } from "../generated/schema"
 import { ERC20 } from '@graphprotocol/graph-ts'
 import { getTokenPriceInUSD } from '../utils/prices'
 
@@ -48,10 +48,8 @@ export function handleSwap(Event: SwapEvent): void {
   entity.quoter = event.params.quoter
   }
 
-function updateToken(token: Token, timestamp: BigInt): void {
+export function updateToken(token: Token, timestamp: BigInt): void {
   token.timestamp = timestamp
-  let price = getTokenPriceInUSD(token.id, timestamp)
-  token.price = price
 
   token.save()
 }
