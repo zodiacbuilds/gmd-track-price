@@ -26,7 +26,7 @@ export function getUniswapPriceInUSD(tokenAddress: Address, fee: i32): BigDecima
       return toDecimal(tokenToWeth.value, 18).times(wethPrice)
 }
 
-export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = null): BigDecimal
+export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = null): BigDecimal {
     if (token == GMD_TOKEN) {
         return getGMDPriceInUSD(timestamp as BigInt)
     } else {
@@ -36,6 +36,7 @@ export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = nul
         }
 
     return BIG_DECIMAL_0
+}
 }
 
 export function getETHPriceInUSD(): BigDecimal {
