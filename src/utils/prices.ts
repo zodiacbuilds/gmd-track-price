@@ -1,5 +1,4 @@
 import { Address, BigDecimal, BigInt, TypedMap } from '@graphprotocol/graph-ts'
-import { BIG_INT_1E18, BIG_INT_0, WETH_TOKEN, WETH_TOKEN_ADDRESS, GMD_TOKEN, GMD_TOKEN_ADDRESS, ETH_ORACLE, UNI_QUOTER_ADDRESS, UNI_V3_POOL_ADDRESS } from './constants'
 import { toDecimal } from './decimals'
 
 const ETH_ORACLE = Address.fromString('0x639fe6ab55c921f74e7fac1ee960c0b6293ba612');
