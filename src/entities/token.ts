@@ -1,6 +1,6 @@
 import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { Token } from "../../generated/schema"
-import { ERC20 } from '@graphprotocol/graph-ts'
+import { ERC20 } from '../../generated/UniswapV3Pool/ERC20'
 import { getTokenPriceInUSD } from '../utils/prices'
 
 export function createToken(address: Address, timestamp: BigInt): Token {
