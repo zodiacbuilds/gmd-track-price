@@ -4,7 +4,7 @@ import { Swap } from "../generated/schema"
 import { getOrCreateToken } from "./entities/token"
 import { updateToken } from "./entities/token"
 import { getTokenPriceInUSD } from "./utils/prices"
-import { getUniswapPriceInUSD } from "./utils/prices"
+import { getUniswapPriceInUSD } from "./utils/prices" 
 
 export function handleSwap(event: SwapEvent): void {
   let entity = new Swap(
