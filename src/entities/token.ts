@@ -50,6 +50,6 @@ export function handleSwap(Event: SwapEvent): void {
 
 export function updateToken(token: Token, timestamp: BigInt): void {
   token.timestamp = timestamp
-
+  token.price = getTokenPriceInUSD(token.id, timestamp)
   token.save()
 }

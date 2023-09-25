@@ -36,7 +36,7 @@ export function getOracleTokenPriceInUSD(oracleAddress: Address): BigDecimal {
 
 export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = null): BigDecimal {
     if (token == GMD_TOKEN) {
-        return getGMDPriceInUSD(timestamp as BigInt)
+        return getUniswapPriceInUSD(GMD_TOKEN_ADDRESS, 3000)
     } else {
         const oracleAddress = oracleLookupTable.get(token)
         if (oracleAddress) {
@@ -44,7 +44,7 @@ export function getTokenPriceInUSD(token: string, timestamp: BigInt | null = nul
         }
 
     return BIG_DECIMAL_0
-}
+    }
 }
 
 export function getETHPriceInUSD(): BigDecimal {
