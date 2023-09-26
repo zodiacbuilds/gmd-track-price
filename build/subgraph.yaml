@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: UniswapV3Pool
@@ -17,17 +17,17 @@ dataSources:
         - Swap
       abis:
         - name: UniswapV3Pool
-          file: ./abis/UniswapV3Pool.json
+          file: UniswapV3Pool/abis/UniswapV3Pool.json
         - name: EACAggregatorProxy
-          file: ./abis/EACAggregatorProxy.json
+          file: UniswapV3Pool/abis/EACAggregatorProxy.json
         - name: ERC20
-          file: ./abis/ERC20.json
+          file: UniswapV3Pool/abis/ERC20.json
         - name: UniswapQuoter
-          file: ./abis/Quoter.json
+          file: UniswapV3Pool/abis/Quoter.json
       eventHandlers:
         - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
           handler: handleSwap
-      file: ./src/uniswap-v-3-pool.ts
+      file: UniswapV3Pool/UniswapV3Pool.wasm
   - kind: ethereum
     name: AccessControlledOffchainAggregator
     network: arbitrum-one
@@ -43,14 +43,14 @@ dataSources:
         - AnswerUpdated
       abis:
         - name: AccessControlledOffchainAggregator
-          file: ./abis/AccessControlledOffchainAggregator.json
+          file: AccessControlledOffchainAggregator/abis/AccessControlledOffchainAggregator.json
         - name: EACAggregatorProxy
-          file: ./abis/EACAggregatorProxy.json
+          file: AccessControlledOffchainAggregator/abis/EACAggregatorProxy.json
         - name: ERC20
-          file: ./abis/ERC20.json
+          file: AccessControlledOffchainAggregator/abis/ERC20.json
         - name: UniswapQuoter
-          file: ./abis/Quoter.json
+          file: AccessControlledOffchainAggregator/abis/Quoter.json
       eventHandlers:
         - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
           handler: handleAnswerUpdated
-      file: ./src/access-controlled-offchain-aggregator.ts
+      file: AccessControlledOffchainAggregator/AccessControlledOffchainAggregator.wasm

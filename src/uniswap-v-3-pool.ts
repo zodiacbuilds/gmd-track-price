@@ -13,7 +13,6 @@ export function handleSwap(event: SwapEvent): void {
   const address = Address.fromString('0x0632742C132413Cd47438691D8064Ff9214aC216');
   const timestamp = event.block.timestamp
   const token = getOrCreateToken(address, timestamp) // get or create gmd token
-  token.price = tokenPrice // set token price as attribute
   updateToken(token, timestamp) // finally save token with updated price
 
   entity.sender = event.params.sender
