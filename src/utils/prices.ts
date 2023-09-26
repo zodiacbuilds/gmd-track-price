@@ -7,12 +7,12 @@ import { BIG_INT_0, BIG_INT_1E18 } from './constants'
 
 const BIG_DECIMAL_0 = BigDecimal.fromString('0');
 const ETH_ORACLE = Address.fromString('0x639fe6ab55c921f74e7fac1ee960c0b6293ba612');
-const WETH_TOKEN = '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1';
+const WETH_TOKEN = '0x82af49447d8a07e3bd95bd0d56f35241523fbab1';
 const WETH_TOKEN_ADDRESS = Address.fromString(WETH_TOKEN);
-const GMD_TOKEN = '0x4945970EfeEc98D393b4b979b9bE265A3aE28A8B';
+const GMD_TOKEN = '0x4945970efeec98d393b4b979b9be265a3ae28a8b';
 const GMD_TOKEN_ADDRESS = Address.fromString(GMD_TOKEN);
-const UNI_QUOTER_ADDRESS = Address.fromString('0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6');
-const UNI_V3_POOL_ADDRESS = Address.fromString('0x0632742C132413Cd47438691D8064Ff9214aC216');
+const UNI_QUOTER_ADDRESS = Address.fromString('0xb27308f9f90d607463bb33ea1bebb41c27ce5ab6');
+const UNI_V3_POOL_ADDRESS = Address.fromString('0x0632742c132413cd47438691d8064ff9214ac216');
 
 let oracleLookupTable = new TypedMap<string, Address>()
 oracleLookupTable.set(WETH_TOKEN, ETH_ORACLE)
