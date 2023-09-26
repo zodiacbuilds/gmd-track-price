@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x33fcfbf3af13dcc813053b7dcb7d3546b0c8a18c"
       abi: UniswapV3Pool
-      startBlock: 133530469
+      startBlock: 133438330
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
