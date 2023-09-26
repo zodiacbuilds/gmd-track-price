@@ -5,12 +5,13 @@ import { getOrCreateToken } from "./entities/token"
 import { updateToken } from "./entities/token"
 import { getTokenPriceInUSD } from "./utils/prices"
 import { getUniswapPriceInUSD } from "./utils/prices" 
+import { GMD_TOKEN } from "./utils/constants"
 
 export function handleSwap(event: SwapEvent): void {
   let entity = new Swap(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  const address = Address.fromString('0x0632742C132413Cd47438691D8064Ff9214aC216');
+  const address = Address.fromString(GMD_TOKEN);
   const timestamp = event.block.timestamp
   const token = getOrCreateToken(address, timestamp) // get or create gmd token
   updateToken(token, timestamp) // finally save token with updated price
