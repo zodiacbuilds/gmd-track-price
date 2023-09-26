@@ -26,7 +26,7 @@ export function getUniswapPriceInUSD(tokenAddress: Address, fee: i32): BigDecima
         BIG_INT_1E18,
         BIG_INT_0
       )
-      const wethPrice = getTokenPrice(WETH_TOKEN)
+      const wethPrice = getETHPriceInUSD()
       return toDecimal(tokenToWeth.value, 18).times(wethPrice)
 }
 
