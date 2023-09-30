@@ -1,14 +1,13 @@
 import { Address, BigDecimal, BigInt, Bytes } from '@graphprotocol/graph-ts'
 
-import { ERC20 } from '../../generated/GmxInvestment/ERC20'
-import { TokenPrices } from '../../generated/GmxInvestment/TokenPrices'
+import { ERC20 } from '../../generated/UniswapV3Pool/ERC20'
+import { TokenPrices } from '../../generated/UniswapV3Pool/TokenPrices'
 
 import { PricedToken, PricedTokenDailySnapshot, PricedTokenHourlySnapshot } from '../../generated/schema'
 import { BIG_DECIMAL_0, CACHE_INTERVAL } from '../utils/constants'
 import { dayFromTimestamp, hourFromTimestamp } from '../utils/dates'
 import { toDecimal } from '../utils/decimals'
 import { getMetric, updateMetric } from './metric'
-
 
 export function createPricedToken(address: Address, tokenPrices: Bytes, timestamp: BigInt): PricedToken {
   const pricedToken = new PricedToken(address.toHexString())

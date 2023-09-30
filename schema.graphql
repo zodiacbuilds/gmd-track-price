@@ -78,3 +78,39 @@ type AnswerUpdated @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type PricedToken @entity {
+  id: ID!
+  timestamp: BigInt!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  price: BigDecimal!
+  tokenPrices: Bytes!
+  pricedTokenHourlySnapshots: [PricedTokenHourlySnapshot!]! @derivedFrom(field: "pricedToken")
+  pricedTokenDailySnapshots: [PricedTokenDailySnapshot!]! @derivedFrom(field: "pricedToken")
+}
+
+type PricedTokenHourlySnapshot @entity {
+  id: ID!
+  timestamp: BigInt!
+  timeframe: BigInt!
+  pricedToken: PricedToken!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  price: BigDecimal!
+  tokenPrices: Bytes!
+}
+
+type PricedTokenDailySnapshot @entity {
+  id: ID!
+  timestamp: BigInt!
+  timeframe: BigInt!
+  pricedToken: PricedToken!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  price: BigDecimal!
+  tokenPrices: Bytes!
+}
