@@ -286,6 +286,22 @@ export class Token extends Entity {
   set price(value: BigDecimal) {
     this.set("price", Value.fromBigDecimal(value));
   }
+
+  get TokenHourlySnapshots(): TokenHourlySnapshotLoader {
+    return new TokenHourlySnapshotLoader(
+      "Token",
+      this.get("id")!.toString(),
+      "TokenHourlySnapshots"
+    );
+  }
+
+  get TokenDailySnapshots(): TokenDailySnapshotLoader {
+    return new TokenDailySnapshotLoader(
+      "Token",
+      this.get("id")!.toString(),
+      "TokenDailySnapshots"
+    );
+  }
 }
 
 export class QuoteExactInputSingle extends Entity {
@@ -1012,7 +1028,7 @@ export class AnswerUpdated extends Entity {
   }
 }
 
-export class PricedToken extends Entity {
+export class TokenHourlySnapshot extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -1020,164 +1036,25 @@ export class PricedToken extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save PricedToken entity without an ID");
+    assert(id != null, "Cannot save TokenHourlySnapshot entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type PricedToken must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type TokenHourlySnapshot must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("PricedToken", id.toString(), this);
+      store.set("TokenHourlySnapshot", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: string): PricedToken | null {
-    return changetype<PricedToken | null>(
-      store.get_in_block("PricedToken", id)
+  static loadInBlock(id: string): TokenHourlySnapshot | null {
+    return changetype<TokenHourlySnapshot | null>(
+      store.get_in_block("TokenHourlySnapshot", id)
     );
   }
 
-  static load(id: string): PricedToken | null {
-    return changetype<PricedToken | null>(store.get("PricedToken", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toString();
-    }
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get timestamp(): BigInt {
-    let value = this.get("timestamp");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set timestamp(value: BigInt) {
-    this.set("timestamp", Value.fromBigInt(value));
-  }
-
-  get name(): string {
-    let value = this.get("name");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toString();
-    }
-  }
-
-  set name(value: string) {
-    this.set("name", Value.fromString(value));
-  }
-
-  get symbol(): string {
-    let value = this.get("symbol");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toString();
-    }
-  }
-
-  set symbol(value: string) {
-    this.set("symbol", Value.fromString(value));
-  }
-
-  get decimals(): i32 {
-    let value = this.get("decimals");
-    if (!value || value.kind == ValueKind.NULL) {
-      return 0;
-    } else {
-      return value.toI32();
-    }
-  }
-
-  set decimals(value: i32) {
-    this.set("decimals", Value.fromI32(value));
-  }
-
-  get price(): BigDecimal {
-    let value = this.get("price");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigDecimal();
-    }
-  }
-
-  set price(value: BigDecimal) {
-    this.set("price", Value.fromBigDecimal(value));
-  }
-
-  get tokenPrices(): Bytes {
-    let value = this.get("tokenPrices");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set tokenPrices(value: Bytes) {
-    this.set("tokenPrices", Value.fromBytes(value));
-  }
-
-  get pricedTokenHourlySnapshots(): PricedTokenHourlySnapshotLoader {
-    return new PricedTokenHourlySnapshotLoader(
-      "PricedToken",
-      this.get("id")!.toString(),
-      "pricedTokenHourlySnapshots"
-    );
-  }
-
-  get pricedTokenDailySnapshots(): PricedTokenDailySnapshotLoader {
-    return new PricedTokenDailySnapshotLoader(
-      "PricedToken",
-      this.get("id")!.toString(),
-      "pricedTokenDailySnapshots"
-    );
-  }
-}
-
-export class PricedTokenHourlySnapshot extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(
-      id != null,
-      "Cannot save PricedTokenHourlySnapshot entity without an ID"
-    );
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type PricedTokenHourlySnapshot must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("PricedTokenHourlySnapshot", id.toString(), this);
-    }
-  }
-
-  static loadInBlock(id: string): PricedTokenHourlySnapshot | null {
-    return changetype<PricedTokenHourlySnapshot | null>(
-      store.get_in_block("PricedTokenHourlySnapshot", id)
-    );
-  }
-
-  static load(id: string): PricedTokenHourlySnapshot | null {
-    return changetype<PricedTokenHourlySnapshot | null>(
-      store.get("PricedTokenHourlySnapshot", id)
+  static load(id: string): TokenHourlySnapshot | null {
+    return changetype<TokenHourlySnapshot | null>(
+      store.get("TokenHourlySnapshot", id)
     );
   }
 
@@ -1220,8 +1097,8 @@ export class PricedTokenHourlySnapshot extends Entity {
     this.set("timeframe", Value.fromBigInt(value));
   }
 
-  get pricedToken(): string {
-    let value = this.get("pricedToken");
+  get Token(): string {
+    let value = this.get("Token");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -1229,8 +1106,8 @@ export class PricedTokenHourlySnapshot extends Entity {
     }
   }
 
-  set pricedToken(value: string) {
-    this.set("pricedToken", Value.fromString(value));
+  set Token(value: string) {
+    this.set("Token", Value.fromString(value));
   }
 
   get name(): string {
@@ -1299,7 +1176,7 @@ export class PricedTokenHourlySnapshot extends Entity {
   }
 }
 
-export class PricedTokenDailySnapshot extends Entity {
+export class TokenDailySnapshot extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -1307,28 +1184,25 @@ export class PricedTokenDailySnapshot extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(
-      id != null,
-      "Cannot save PricedTokenDailySnapshot entity without an ID"
-    );
+    assert(id != null, "Cannot save TokenDailySnapshot entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type PricedTokenDailySnapshot must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type TokenDailySnapshot must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("PricedTokenDailySnapshot", id.toString(), this);
+      store.set("TokenDailySnapshot", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: string): PricedTokenDailySnapshot | null {
-    return changetype<PricedTokenDailySnapshot | null>(
-      store.get_in_block("PricedTokenDailySnapshot", id)
+  static loadInBlock(id: string): TokenDailySnapshot | null {
+    return changetype<TokenDailySnapshot | null>(
+      store.get_in_block("TokenDailySnapshot", id)
     );
   }
 
-  static load(id: string): PricedTokenDailySnapshot | null {
-    return changetype<PricedTokenDailySnapshot | null>(
-      store.get("PricedTokenDailySnapshot", id)
+  static load(id: string): TokenDailySnapshot | null {
+    return changetype<TokenDailySnapshot | null>(
+      store.get("TokenDailySnapshot", id)
     );
   }
 
@@ -1371,8 +1245,8 @@ export class PricedTokenDailySnapshot extends Entity {
     this.set("timeframe", Value.fromBigInt(value));
   }
 
-  get pricedToken(): string {
-    let value = this.get("pricedToken");
+  get Token(): string {
+    let value = this.get("Token");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -1380,8 +1254,8 @@ export class PricedTokenDailySnapshot extends Entity {
     }
   }
 
-  set pricedToken(value: string) {
-    this.set("pricedToken", Value.fromString(value));
+  set Token(value: string) {
+    this.set("Token", Value.fromString(value));
   }
 
   get name(): string {
@@ -1450,7 +1324,7 @@ export class PricedTokenDailySnapshot extends Entity {
   }
 }
 
-export class PricedTokenHourlySnapshotLoader extends Entity {
+export class TokenHourlySnapshotLoader extends Entity {
   _entity: string;
   _field: string;
   _id: string;
@@ -1462,13 +1336,13 @@ export class PricedTokenHourlySnapshotLoader extends Entity {
     this._field = field;
   }
 
-  load(): PricedTokenHourlySnapshot[] {
+  load(): TokenHourlySnapshot[] {
     let value = store.loadRelated(this._entity, this._id, this._field);
-    return changetype<PricedTokenHourlySnapshot[]>(value);
+    return changetype<TokenHourlySnapshot[]>(value);
   }
 }
 
-export class PricedTokenDailySnapshotLoader extends Entity {
+export class TokenDailySnapshotLoader extends Entity {
   _entity: string;
   _field: string;
   _id: string;
@@ -1480,8 +1354,8 @@ export class PricedTokenDailySnapshotLoader extends Entity {
     this._field = field;
   }
 
-  load(): PricedTokenDailySnapshot[] {
+  load(): TokenDailySnapshot[] {
     let value = store.loadRelated(this._entity, this._id, this._field);
-    return changetype<PricedTokenDailySnapshot[]>(value);
+    return changetype<TokenDailySnapshot[]>(value);
   }
 }
