@@ -3,8 +3,6 @@ import { Swap as SwapEvent } from "../generated/UniswapV3Pool/UniswapV3Pool"
 import { Swap } from "../generated/schema"
 import { getOrCreateToken } from "./entities/token"
 import { updateToken } from "./entities/token"
-import { getTokenPriceInUSD } from "./utils/prices"
-import { getUniswapPriceInUSD } from "./utils/prices" 
 import { GMD_TOKEN } from "./utils/constants"
 
 export function handleSwap(event: SwapEvent): void {

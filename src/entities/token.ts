@@ -51,5 +51,47 @@ export function handleSwap(Event: SwapEvent): void {
 export function updateToken(token: Token, timestamp: BigInt): void {
   token.timestamp = timestamp
   token.price = getTokenPriceInUSD(token.id, timestamp)
+  updateOrCreateHourData(token, timestamp)
+  updateOrCreateDayData(token, timestamp)
   token.save()
+}
+
+export function updateOrCreateDayData(Token: Token, timestamp: BigInt): void {
+  const dayTimestamp = dayFromTimestamp(timestamp)
+  const dataID = Token.id + '-' + dayTimestamp
+
+  let dayData = TokenDailySnapshot.load(dataID)
+  if (dayData === null) {
+    dayData = new TokenDailySnapshot(dataID)
+    dayData.timeframe = BigInt.fromString(dayTimestamp)
+  }
+
+  dayData.Token = Token.id
+  dayData.timestamp = timestamp
+  dayData.name = Token.name
+  dayData.symbol = Token.symbol
+  dayData.decimals = Token.decimals
+  dayData.price = Token.price
+  dayData.token = Token.token
+  dayData.save()
+}
+
+export function updateOrCreateHourData(Token: Token, timestamp: BigInt): void {
+  const hourTimestamp = hourFromTimestamp(timestamp)
+  const dataID = Token.id + '-' + hourTimestamp
+
+  let hourData = TokenHourlySnapshot.load(dataID)
+  if (hourData === null) {
+    hourData = new TokenHourlySnapshot(dataID)
+    hourData.timeframe = BigInt.fromString(hourTimestamp)
+  }
+
+  hourData.Token = Token.id
+  hourData.timestamp = timestamp
+  hourData.name = Token.name
+  hourData.symbol = Token.symbol
+  hourData.decimals = Token.decimals
+  hourData.price = Token.price
+  hourData.token = Token.token
+  hourData.save()
 }

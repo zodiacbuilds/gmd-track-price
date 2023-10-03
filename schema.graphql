@@ -19,6 +19,8 @@ type Token @entity {
   symbol: String!
   decimals: Int!
   price: BigDecimal!
+  TokenHourlySnapshots: [TokenHourlySnapshot!]! @derivedFrom(field: "Token")
+  TokenDailySnapshots: [TokenDailySnapshot!]! @derivedFrom(field: "Token")
 }
 
 type QuoteExactInputSingle @entity {
@@ -91,7 +93,7 @@ type PricedToken @entity {
   pricedTokenDailySnapshots: [PricedTokenDailySnapshot!]! @derivedFrom(field: "pricedToken")
 }
 
-type PricedTokenHourlySnapshot @entity {
+type TokenHourlySnapshot @entity {
   id: ID!
   timestamp: BigInt!
   timeframe: BigInt!
@@ -103,7 +105,7 @@ type PricedTokenHourlySnapshot @entity {
   tokenPrices: Bytes!
 }
 
-type PricedTokenDailySnapshot @entity {
+type TokenDailySnapshot @entity {
   id: ID!
   timestamp: BigInt!
   timeframe: BigInt!
