@@ -1161,19 +1161,6 @@ export class TokenHourlySnapshot extends Entity {
   set price(value: BigDecimal) {
     this.set("price", Value.fromBigDecimal(value));
   }
-
-  get tokenPrices(): Bytes {
-    let value = this.get("tokenPrices");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set tokenPrices(value: Bytes) {
-    this.set("tokenPrices", Value.fromBytes(value));
-  }
 }
 
 export class TokenDailySnapshot extends Entity {
@@ -1308,19 +1295,6 @@ export class TokenDailySnapshot extends Entity {
 
   set price(value: BigDecimal) {
     this.set("price", Value.fromBigDecimal(value));
-  }
-
-  get tokenPrices(): Bytes {
-    let value = this.get("tokenPrices");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set tokenPrices(value: Bytes) {
-    this.set("tokenPrices", Value.fromBytes(value));
   }
 }
 

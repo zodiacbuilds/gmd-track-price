@@ -4,6 +4,7 @@ import { Swap } from "../generated/schema"
 import { getOrCreateToken } from "./entities/token"
 import { updateToken } from "./entities/token"
 import { GMD_TOKEN } from "./utils/constants"
+import { updateOrCreateDayData, updateOrCreateHourData } from "./entities/token"
 
 export function handleSwap(event: SwapEvent): void {
   let entity = new Swap(
@@ -13,6 +14,8 @@ export function handleSwap(event: SwapEvent): void {
   const timestamp = event.block.timestamp
   const token = getOrCreateToken(address, timestamp) // get or create gmd token
   updateToken(token, timestamp) // finally save token with updated price
+  updateOrCreateHourData(token, timestamp)
+  updateOrCreateDayData(token, timestamp)
 
   entity.sender = event.params.sender
   entity.recipient = event.params.recipient

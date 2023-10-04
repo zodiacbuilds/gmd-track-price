@@ -24,8 +24,6 @@ dataSources:
           file: UniswapV3Pool/abis/ERC20.json
         - name: UniswapQuoter
           file: UniswapV3Pool/abis/Quoter.json
-        - name: TokenPrices
-          file: UniswapV3Pool/abis/TokenPrices.json
       eventHandlers:
         - event: Swap(indexed address,indexed address,int256,int256,uint160,uint128,int24)
           handler: handleSwap
@@ -52,8 +50,6 @@ dataSources:
           file: AccessControlledOffchainAggregator/abis/ERC20.json
         - name: UniswapQuoter
           file: AccessControlledOffchainAggregator/abis/Quoter.json
-        - name: TokenPrices
-          file: AccessControlledOffchainAggregator/abis/TokenPrices.json
       eventHandlers:
         - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
           handler: handleAnswerUpdated

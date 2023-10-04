@@ -2,6 +2,8 @@ import { Address, BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { Token } from "../../generated/schema"
 import { ERC20 } from '../../generated/UniswapV3Pool/ERC20'
 import { getTokenPriceInUSD } from '../utils/prices'
+import { TokenDailySnapshot, TokenHourlySnapshot } from '../../generated/schema'
+import { dayFromTimestamp, hourFromTimestamp } from '../utils/dates'
 
 export function createToken(address: Address, timestamp: BigInt): Token {
   const token = new Token(address.toHexString())
@@ -72,7 +74,6 @@ export function updateOrCreateDayData(Token: Token, timestamp: BigInt): void {
   dayData.symbol = Token.symbol
   dayData.decimals = Token.decimals
   dayData.price = Token.price
-  dayData.token = Token.token
   dayData.save()
 }
 
@@ -92,6 +93,5 @@ export function updateOrCreateHourData(Token: Token, timestamp: BigInt): void {
   hourData.symbol = Token.symbol
   hourData.decimals = Token.decimals
   hourData.price = Token.price
-  hourData.token = Token.token
   hourData.save()
 }

@@ -90,7 +90,6 @@ type TokenHourlySnapshot @entity {
   symbol: String!
   decimals: Int!
   price: BigDecimal!
-  tokenPrices: Bytes!
 }
 
 type TokenDailySnapshot @entity {
@@ -102,5 +101,4 @@ type TokenDailySnapshot @entity {
   symbol: String!
   decimals: Int!
   price: BigDecimal!
-  tokenPrices: Bytes!
 }
